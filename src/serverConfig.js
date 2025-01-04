@@ -1,4 +1,4 @@
 require("dotenv").config();
 module.exports={
-  Port:process.send.PortNo
+  Port:process.env.PortNo
 }
