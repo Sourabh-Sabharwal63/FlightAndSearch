@@ -22,6 +22,25 @@ const create = async (req, res) => {
   }
 };
 
+const createAll=async(req,res)=>{
+  try{
+     await cityService.createAll(req.body);
+     res.status(200).json({
+      message:"data is added successfully ",
+      success:true
+     })
+  }
+  catch(err){
+    console.log(err.message);
+    return res.status(500).json({
+      data: {},
+      success: false,
+      message: "Not able to create",
+      err: err,
+    });
+  }
+}
+
 //Delete -> city/:cityId
 const destroy = async (req, res) => {
   try {
@@ -84,4 +103,47 @@ const update = async (req, res) => {
     });
   }
 };
-module.exports={create,destroy,update,get};
+
+
+const getAll=async(req,res)=>{
+  try{
+    const cityList=await cityService.getAll();
+    return res.status(200).json({
+      data:cityList,
+      success: true,
+      message: "Successfully get all the city",
+      err: {},
+    })
+  }
+  catch(err){
+    console.log(err.message);
+    return res.status(500).json({
+      data: {},
+      success: false,
+      message: "Not able to get All the  city",
+      err: err,
+    });
+  }
+}
+
+const getStartWith=async(req,res)=>{
+  try{
+    const nameList=await cityService.getStartWith(req.params.name);
+    return res.status(200).json({
+      data:nameList,
+      success: true,
+      message: "Successfully get all the names",
+      err: {},
+    })
+  }
+  catch(err){
+    console.log(err.message);
+    return res.status(500).json({
+      data: {},
+      success: false,
+      message: "Not able to get All the names",
+      err: err,
+    });
+  }
+}
+module.exports={create,destroy,update,get,getAll,getStartWith,createAll};
