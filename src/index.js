@@ -17,7 +17,7 @@ app.use("/api",ApiRoutes)
 //   res.send("Welcome to the Search Service! ");
 // });
 
-
+const obj={};
 
 async function StartServer() {
   console.log(`Server Start at Port ${Port}`);
@@ -33,14 +33,13 @@ async function StartServer() {
   // console.log("airports = ",airports);
   // const airports=await Airport.findAll({include:City});
   // console.log(airports);
-  const airports=await Airport.findOne({where:{
-    id:9
-  }});
+  // const airports=await Airport.findOne({where:{
+  //   id:9
+  // }});
 
-  const city=await airports.getCity();
-  console.log("airport", airports);
-  console.log("city",city);
+  // const city=await airports.getCity();
+  // console.log("airport", airports);
+  // console.log("city",city);
  
-  
 }
 StartServer();

@@ -1,3 +1,4 @@
 const cityService =require("./city-service");
 const airPortService=require("./airport-service")
-module.exports={cityService,airPortService};
+const flightService=require("./flight-service");
+module.exports={cityService,airPortService,flightService};
