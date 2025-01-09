@@ -1,5 +1,8 @@
 
 const {flightService}=require("../services");
+const {validateCreateFlight}=require("../middlewares/flightMiddleware");
+
+
 const createFlight=async(req,res)=>{
   try{
     const flight=await flightService.createFlight(req.body);

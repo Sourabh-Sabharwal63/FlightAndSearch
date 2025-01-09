@@ -1,5 +1,9 @@
 const { Airport } = require("../models");
-class AirportRepository {
+const curdRepository=require("./curd-Repository");
+class AirportRepository extends curdRepository{
+  constructor(model=Airport){
+    super(model);
+  }
   async createAirport({ name, address, cityId }) {
     try {
       console.log("inside repository ", name, address, cityId);
@@ -14,15 +18,15 @@ class AirportRepository {
       throw { err };
     }
   }
-  async getAllAirports() {
-    try {
-      const airports = await Airport.findAll();
-      return airports;
-    } catch (err) {
-      console.log("err => ", err.message);
-      throw { err };
-    }
-  }
+  // async getAllAirports() {
+  //   try {
+  //     const airports = await Airport.findAll();
+  //     return airports;
+  //   } catch (err) {
+  //     console.log("err => ", err.message);
+  //     throw { err };
+  //   }
+  // }
   async destroy(airportId) {
     try {
       const flag = await Airport.destroy({

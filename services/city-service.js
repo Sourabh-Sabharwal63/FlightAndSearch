@@ -1,7 +1,9 @@
 const { CityRepository } = require("../repository/index");
+const curdService=require("./curd-service");
 
-class CityService {
+class CityService extends curdService{
   constructor(cityRepository = new CityRepository()) {
+    super(cityRepository);
     console.log("cityService Constructor is called ");
     this.cityRepository = cityRepository;
   }
@@ -32,15 +34,15 @@ class CityService {
     }
   }
 
-  async getCity(cityId) {
-    try {
-      const city = await this.cityRepository.getCity(cityId);
-      return city;
-    } catch (err) {
-      console.log(`Something went wrong at service layer in getCity`);
-      throw err;
-    }
-  }
+  // async getCity(cityId) {
+  //   try {
+  //     const city = await this.cityRepository.getCity(cityId);
+  //     return city;
+  //   } catch (err) {
+  //     console.log(`Something went wrong at service layer in getCity`);
+  //     throw err;
+  //   }
+  // }
   async updateCity(cityId, data) {
     try {
       const city = await this.cityRepository.updateCity(cityId, data);
@@ -50,15 +52,15 @@ class CityService {
     }
   }
 
-  async getAll() {
-    try {
-      const cityList = await this.cityRepository.getAll();
-      return cityList;
-    } catch (err) {
-      console.log(`Something went wrong at service layer in getAll`);
-      throw err;
-    }
-  }
+  // async getAll() {
+  //   try {
+  //     const cityList = await this.cityRepository.getAll();
+  //     return cityList;
+  //   } catch (err) {
+  //     console.log(`Something went wrong at service layer in getAll`);
+  //     throw err;
+  //   }
+  // }
 
   async getStartWith(name) {
     try {

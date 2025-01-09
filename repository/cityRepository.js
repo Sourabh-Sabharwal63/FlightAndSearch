@@ -2,46 +2,50 @@ const { City } = require("../models");
 const {sequelize}=require("../models");
 const { QueryTypes } = require('sequelize');
 const {Op}=require("sequelize");
-class CityRepository {
-  async createCity({ cityName}) {
-    try {
-      const city = await City.create({ name: cityName});
-      console.log(`auto granted id is ${city.id}`);
-      return city;
-    } catch (err) {
-      throw { err };
-    }
+const curdRepository=require("./curd-Repository");
+class CityRepository extends curdRepository{
+  constructor(model=City){
+    super(model);
   }
+  // async createCity({ cityName}) {
+  //   try {
+  //     const city = await City.create({ name: cityName});
+  //     console.log(`auto granted id is ${city.id}`);
+  //     return city;
+  //   } catch (err) {
+  //     throw { err };
+  //   }
+  // }
 
-  async deleteCity(cityId) {
-    try {
-      await City.destroy({
-        where: {
-          id: cityId,
-        },
-      });
-    } catch (err) {
-      throw { err };
-    }
-  }
+  // async deleteCity(cityId) {
+  //   try {
+  //     await City.destroy({
+  //       where: {
+  //         id: cityId,
+  //       },
+  //     });
+  //   } catch (err) {
+  //     throw { err };
+  //   }
+  // }
 
-  async getCity(cityId) {
-    try {
-      console.log("getting city");
-      const city = await City.findByPk(cityId);
-      return city;
-    } catch (err) {
-      throw { err };
-    }
-  }
-  async updateCity(cityId, data) {
-    try {
-      //this approach only return true not the updated value
-      const city = await City.update(data, {
-        where: {
-          id: cityId,
-        },
-      });
+  // async getCity(cityId) {
+  //   try {
+  //     console.log("getting city");
+  //     const city = await City.findByPk(cityId);
+  //     return city;
+  //   } catch (err) {
+  //     throw { err };
+  //   }
+  // }
+  // async updateCity(cityId, data) {
+  //   try {
+  //     //this approach only return true not the updated value
+  //     const city = await City.update(data, {
+  //       where: {
+  //         id: cityId,
+  //       },
+  //     });
 
 
        //this approach return updated value
@@ -49,24 +53,24 @@ class CityRepository {
       // city.name=data.name;
       // await city.save();
       
-      return city;
-    } catch (err) {
-      throw { err };
-    }
-  }
+  //     return city;
+  //   } catch (err) {
+  //     throw { err };
+  //   }
+  // }
 
-  async getAll(){
-    try{
-      const cityList = await sequelize.query(
-        'SELECT * FROM Cities', // Ensure table name matches database
-        { type: QueryTypes.SELECT } // Use QueryTypes here
-      );
-    return cityList;
-    }
-    catch(err){
-    throw (err);
-    }
-  }
+  // async getAll(){
+  //   try{
+  //     const cityList = await sequelize.query(
+  //       'SELECT * FROM Cities', // Ensure table name matches database
+  //       { type: QueryTypes.SELECT } // Use QueryTypes here
+  //     );
+  //   return cityList;
+  //   }
+  //   catch(err){
+  //   throw (err);
+  //   }
+  // }
   async getStartWith(name){
     
    try{

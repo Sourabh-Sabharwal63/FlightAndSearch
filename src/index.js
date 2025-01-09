@@ -7,6 +7,8 @@ const {Airport}=require("../models/index");
 const {City}=require("../models/index");
 const db=require("../models");
 const airport = require("../models/airport");
+const {AirplaneRepository,AirportRepository}=require("../repository")
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
@@ -22,6 +24,9 @@ const obj={};
 async function StartServer() {
   console.log(`Server Start at Port ${Port}`);
   app.listen(Port);
+  
+
+
   
   // db.sequelize.sync({alter:true});
 
