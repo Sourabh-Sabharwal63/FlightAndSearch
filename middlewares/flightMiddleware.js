@@ -34,6 +34,18 @@ const validateCreateFlight = (req,res,next) => {
 
 };
 
+const validateGetFlight=async(req,res,next)=>{
+  
+    if(!req.params.flightId){
+      return res.status(300).json({
+        message:"flightId is missing ",
+        data:{},
+        error:"BAD_REQUEST"
+      })
+    }
+   next();
+}
 
 
-module.exports={validateCreateFlight};
+
+module.exports={validateCreateFlight,validateGetFlight};

@@ -80,5 +80,15 @@ class flightRepository {
       throw { err };
     }
   }
+
+  async updateFlight(flightId,data){
+    try {
+      const flight=await Flight.update(data,{where:{id:flightId}});
+      return flight;
+    } catch (error) {
+      throw error;
+    }
+
+  }
 }
 module.exports = flightRepository;
